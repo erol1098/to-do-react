@@ -34,7 +34,6 @@ const App = () => {
     setTodos((prevTodos) => prevTodos.filter((todos) => todos.id !== id));
   };
   const isCheckedHandler = (isChecked, id) => {
-    console.log(isChecked, id);
     setTodos((prevTodos) =>
       prevTodos.map((todo) => {
         if (todo.id === id) {

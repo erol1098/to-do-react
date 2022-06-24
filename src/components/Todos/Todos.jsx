@@ -2,13 +2,12 @@ import React from "react";
 import styles from "./Todos.module.css";
 const Todos = (props) => {
   let filteredList;
-
   props.filter === "completed"
     ? (filteredList = props.todos.filter((todo) => todo.isChecked === true))
     : props.filter === "active"
     ? (filteredList = props.todos.filter((todo) => todo.isChecked === false))
     : (filteredList = props.todos);
-  console.log(filteredList);
+
   const setChecked = (e) => {
     e.target.nextSibling.className = e.target.checked
       ? `${styles.checked} ${styles.content}`
@@ -34,7 +33,7 @@ const Todos = (props) => {
   return (
     <ul className={styles.list}>
       {filteredList.map((todo) => {
-        const { id, content } = todo;
+        const { id, content, isChecked } = todo;
 
         return (
           <li
@@ -48,8 +47,14 @@ const Todos = (props) => {
                 className={styles.check}
                 type="checkbox"
                 onChange={setChecked}
+                checked={!isChecked ? false : true}
               />
               <input
+                className={
+                  !isChecked
+                    ? styles.content
+                    : `${styles.checked} ${styles.content}`
+                }
                 type="text"
                 value={content}
                 onChange={editContentHandler}
