@@ -1,25 +1,57 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Todos.module.css";
 const Todos = (props) => {
-  const [done, setDone] = useState(false);
+  const [edited, setEdited] = useState(props.todos.content);
+  console.log(props.todos.content);
+  const setChecked = (e) => {
+    e.target.nextSibling.className = e.target.checked ? styles.checked : "";
+  };
+  const displayDeleteBtnHandler = (e) => {
+    e.target.closest(
+      "li"
+    ).lastChild.className = `${styles.visible} ${styles.delete}`;
+  };
+  const hideDeleteBtnHandler = (e) => {
+    e.target.closest("li").lastChild.className = `${styles.delete}`;
+  };
+  const deleteItemHandler = (e) => {
+    props.deletedItem(e.target.closest("li").id);
+  };
 
-  const checkBoxHandler = (e) => {
-    e.target.checked ? setDone(true) : setDone(false);
+  const editContentHandler = (e) => {
+    e.target.readOnly = false;
   };
 
   return (
     <ul className={styles.list}>
       {props.todos.map((todo) => {
-        const { content } = todo;
-        const key = `${Math.random()}`;
+        const { id, content } = todo;
+
         return (
-          <li key={key} className={done ? "checked" : ""}>
-            <input
-              className={styles.check}
-              type="checkbox"
-              onClick={checkBoxHandler}
-            />
-            <p>{content}</p>
+          <li
+            key={id}
+            id={id}
+            onMouseOver={displayDeleteBtnHandler}
+            onMouseOut={hideDeleteBtnHandler}
+          >
+            <div>
+              <input
+                className={styles.check}
+                type="checkbox"
+                onChange={setChecked}
+              />
+              <input
+                className={styles.content}
+                type="text"
+                value={edited}
+                readOnly
+                onClick={editContentHandler}
+              />
+            </div>
+
+            <div className={styles.delete} onClick={deleteItemHandler}>
+              x
+            </div>
           </li>
         );
       })}

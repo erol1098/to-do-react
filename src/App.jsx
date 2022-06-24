@@ -5,10 +5,16 @@ import Card from "./components/Card/Card";
 import styles from "./App.module.css";
 import Footer from "./components/Footer/Footer";
 const App = () => {
-  const [todos, getTodos] = useState([]);
+  const [todos, setTodos] = useState([]);
   const getListHandler = (list) => {
-    getTodos((prevTodos) => [...prevTodos, list]);
+    setTodos((prevTodos) => [...prevTodos, list]);
   };
+
+  const deleteItemHandler = (id) => {
+    console.log("item deleted", id);
+    setTodos((prevTodos) => prevTodos.filter((todos) => todos.id !== id));
+  };
+
   return (
     <React.Fragment>
       <header className={styles.title}>
@@ -16,7 +22,7 @@ const App = () => {
       </header>
       <Card>
         <Input getList={getListHandler} />
-        <Todos todos={todos} />
+        <Todos todos={todos} deletedItem={deleteItemHandler} />
         <Footer />
       </Card>
     </React.Fragment>

@@ -8,10 +8,14 @@
   padding: 1rem 2rem;
   border-bottom: 1px solid gray;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 2rem;
 }
 
+.list li div {
+  display: flex;
+  gap: 2rem;
+}
 .check {
   height: 2rem;
   width: 2rem;
@@ -24,4 +28,18 @@
 .checked {
   color: #ddd;
   text-decoration: line-through;
+}
+
+.delete {
+  color: red;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.content {
+  border: none;
 }
