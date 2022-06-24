@@ -1,0 +1,16 @@
+.form input {
+  margin: auto;
+  width: 40vw;
+  max-width: 40rem;
+  padding: 1rem 3rem;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.form input:focus {
+  outline: none;
+}
+.form input::placeholder {
+  font-size: 1.2rem;
+  color: #ddd;
+}

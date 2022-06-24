@@ -1,0 +1,11 @@
+.title {
+  color: red;
+  opacity: 0.4;
+  width: 40vw;
+  max-width: 40rem;
+  margin: auto;
+  text-align: center;
+}
+.title h1 {
+  font-size: 3rem;
+}

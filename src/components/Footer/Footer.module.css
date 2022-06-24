@@ -1,0 +1,8 @@
+.footer {
+  margin: auto;
+  width: 40vw;
+  max-width: 40rem;
+  padding: 1rem 3rem;
+  border: none;
+  text-align: center;
+}
