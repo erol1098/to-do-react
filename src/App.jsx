@@ -52,7 +52,17 @@ const App = () => {
       prevTodos.filter((todo) => todo.isChecked === false)
     );
   };
-
+  const editItemHandler = (content, id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id === id) {
+          todo.content = content;
+          todo.isChecked = false;
+          return todo;
+        } else return todo;
+      })
+    );
+  };
   return (
     <React.Fragment>
       <header className={styles.title}>
@@ -65,6 +75,7 @@ const App = () => {
           todos={todos}
           deletedItem={deleteItemHandler}
           isChecked={isCheckedHandler}
+          editItem={editItemHandler}
         />
         <Footer
           filter={filterHandler}

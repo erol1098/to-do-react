@@ -27,7 +27,7 @@ const Todos = (props) => {
   };
 
   const editContentHandler = (e) => {
-    // console.log(e.target.value);
+    props.editItem(e.target.value, e.target.closest("li").id);
   };
 
   return (
