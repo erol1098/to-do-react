@@ -31,3 +31,9 @@ p {
 .footer li:hover {
   border: 1px solid #ddd;
 }
+.clear {
+  cursor: pointer;
+}
+.clear:hover {
+  text-decoration: underline;
+}

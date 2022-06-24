@@ -7,7 +7,10 @@ const Footer = (props) => {
     e.target.className = styles.selected;
     props.filter(e.target.id);
   };
-
+  const clearCompletedHandler = (e) => {
+    console.log("object");
+    props.clearCompleted();
+  };
   return (
     <footer className={styles.footer}>
       <p>{active} Items Left</p>
@@ -22,7 +25,9 @@ const Footer = (props) => {
           Completed : {completed}
         </li>
       </ul>
-      <p>Clear Completed</p>
+      <p className={styles.clear} onClick={clearCompletedHandler}>
+        Clear Completed
+      </p>
     </footer>
   );
 };

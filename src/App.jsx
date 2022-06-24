@@ -46,6 +46,13 @@ const App = () => {
   const filterHandler = (filter) => {
     setFilter(filter);
   };
+
+  const updateTodos = () => {
+    setTodos((prevTodos) =>
+      prevTodos.filter((todo) => todo.isChecked === false)
+    );
+  };
+
   return (
     <React.Fragment>
       <header className={styles.title}>
@@ -59,7 +66,11 @@ const App = () => {
           deletedItem={deleteItemHandler}
           isChecked={isCheckedHandler}
         />
-        <Footer filter={filterHandler} statistic={numbers} />
+        <Footer
+          filter={filterHandler}
+          statistic={numbers}
+          clearCompleted={updateTodos}
+        />
       </Card>
     </React.Fragment>
   );
