@@ -44,3 +44,7 @@
   border: none;
   transition: color 0.5s;
 }
+
+input {
+  border: none;
+}

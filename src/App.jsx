@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "./components/Input/Input";
 import Todos from "./components/Todos/Todos";
 import Card from "./components/Card/Card";
 import styles from "./App.module.css";
 import Footer from "./components/Footer/Footer";
 const App = () => {
-  const [todos, setTodos] = useState([]);
-  console.log(todos);
+  const [filter, setFilter] = useState("all");
+  const [todos, setTodos] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("todos");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+
+  const [numbers, setNumbers] = useState({ all: 0, active: 0, completed: 0 });
+
+  useEffect(() => {
+    setNumbers((prevNumbers) => {
+      return {
+        all: todos.length,
+        active: `${todos.filter((todo) => todo.isChecked === false).length}`,
+        completed: `${todos.filter((todo) => todo.isChecked === true).length}`,
+      };
+    });
+    // storing todos
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   const getListHandler = (list) => {
     setTodos((prevTodos) => [...prevTodos, list]);
   };
-
   const deleteItemHandler = (id) => {
-    console.log("item deleted", id);
     setTodos((prevTodos) => prevTodos.filter((todos) => todos.id !== id));
   };
   const isCheckedHandler = (isChecked, id) => {
@@ -26,7 +44,9 @@ const App = () => {
       })
     );
   };
-
+  const filterHandler = (filter) => {
+    setFilter(filter);
+  };
   return (
     <React.Fragment>
       <header className={styles.title}>
@@ -35,11 +55,12 @@ const App = () => {
       <Card>
         <Input getList={getListHandler} />
         <Todos
+          filter={filter}
           todos={todos}
           deletedItem={deleteItemHandler}
           isChecked={isCheckedHandler}
         />
-        <Footer />
+        <Footer filter={filterHandler} statistic={numbers} />
       </Card>
     </React.Fragment>
   );

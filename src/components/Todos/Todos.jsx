@@ -1,6 +1,14 @@
 import React from "react";
 import styles from "./Todos.module.css";
 const Todos = (props) => {
+  let filteredList;
+
+  props.filter === "completed"
+    ? (filteredList = props.todos.filter((todo) => todo.isChecked === true))
+    : props.filter === "active"
+    ? (filteredList = props.todos.filter((todo) => todo.isChecked === false))
+    : (filteredList = props.todos);
+  console.log(filteredList);
   const setChecked = (e) => {
     e.target.nextSibling.className = e.target.checked
       ? `${styles.checked} ${styles.content}`
@@ -20,12 +28,12 @@ const Todos = (props) => {
   };
 
   const editContentHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   return (
     <ul className={styles.list}>
-      {props.todos.map((todo) => {
+      {filteredList.map((todo) => {
         const { id, content } = todo;
 
         return (
@@ -42,7 +50,6 @@ const Todos = (props) => {
                 onChange={setChecked}
               />
               <input
-                className={styles.content}
                 type="text"
                 value={content}
                 onChange={editContentHandler}

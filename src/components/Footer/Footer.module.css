@@ -5,4 +5,28 @@
   padding: 1rem 3rem;
   border: none;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.footer li {
+  display: inline;
+  cursor: pointer;
+  padding: 0.3rem;
+  font-size: 0.7rem;
+}
+
+p {
+  font-size: 0.7rem;
+}
+
+.selected,
+.footer li:hover {
+  border: 1px solid #ddd;
 }
