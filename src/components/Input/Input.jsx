@@ -9,7 +9,7 @@ const Input = (props) => {
 
   const addItemHandler = (e) => {
     e.preventDefault();
-    props.getList({ id: `${Math.random()}`, content: item });
+    props.getList({ id: `${Math.random()}`, content: item, isChecked: false });
     setItem("");
   };
 

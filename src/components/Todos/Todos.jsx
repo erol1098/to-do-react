@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Todos.module.css";
 const Todos = (props) => {
-  const [edited, setEdited] = useState(props.todos.content);
-  console.log(props.todos.content);
   const setChecked = (e) => {
-    e.target.nextSibling.className = e.target.checked ? styles.checked : "";
+    e.target.nextSibling.className = e.target.checked
+      ? `${styles.checked} ${styles.content}`
+      : styles.content;
+    props.isChecked(e.target.checked, e.target.closest("li").id);
   };
   const displayDeleteBtnHandler = (e) => {
     e.target.closest(
@@ -19,7 +20,7 @@ const Todos = (props) => {
   };
 
   const editContentHandler = (e) => {
-    e.target.readOnly = false;
+    console.log(e.target.value);
   };
 
   return (
@@ -32,7 +33,7 @@ const Todos = (props) => {
             key={id}
             id={id}
             onMouseOver={displayDeleteBtnHandler}
-            onMouseOut={hideDeleteBtnHandler}
+            onMouseLeave={hideDeleteBtnHandler}
           >
             <div>
               <input
@@ -43,12 +44,10 @@ const Todos = (props) => {
               <input
                 className={styles.content}
                 type="text"
-                value={edited}
-                readOnly
-                onClick={editContentHandler}
+                value={content}
+                onChange={editContentHandler}
               />
             </div>
-
             <div className={styles.delete} onClick={deleteItemHandler}>
               x
             </div>
