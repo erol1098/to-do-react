@@ -1,8 +1,7 @@
 .footer {
-  height: 3rem;
+  height: 4rem;
+  background-color: #eee;
   margin: auto;
-  width: 40vw;
-  max-width: 40rem;
   padding: 1rem 3rem;
   border: none;
   text-align: center;
@@ -20,16 +19,16 @@
   display: inline;
   cursor: pointer;
   padding: 0.3rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 p {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 .selected,
 .footer li:hover {
-  border: 1px solid #ddd;
+  border: 1px solid #bbb;
 }
 .clear {
   cursor: pointer;

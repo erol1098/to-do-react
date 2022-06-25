@@ -1,7 +1,5 @@
 .form input {
-  margin: auto;
-  width: 40vw;
-  max-width: 40rem;
+  width: 100%;
   padding: 1rem 3rem;
   border: none;
   border-bottom: 1px solid gray;

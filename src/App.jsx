@@ -64,7 +64,7 @@ const App = () => {
     );
   };
   return (
-    <React.Fragment>
+    <Card>
       <header className={styles.title}>
         <h1>todos</h1>
       </header>
@@ -83,7 +83,7 @@ const App = () => {
           clearCompleted={updateTodos}
         />
       </Card>
-    </React.Fragment>
+    </Card>
   );
 };
 
